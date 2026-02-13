@@ -1,5 +1,5 @@
-# FeriCulate
-FeriCulate: A simple Python calculator featuring persistent history and error handling.
+# FeriCulator
+FeriCulator: A simple Python calculator featuring persistent history and error handling.
 
 Hi! This is my first Python project. It's a simple calculator that saves your calculation history to a local file.
 
@@ -12,7 +12,7 @@ Hi! This is my first Python project. It's a simple calculator that saves your ca
 
 ## How to Run
 1. Make sure you have Python installed.
-2. Download `FeriCulate.py`.
+2. Download `FeriCulator.py`.
 3. Run the following command in your terminal:
    ```bash
-   python FeriCulate.py
+   python FeriCulator.py
