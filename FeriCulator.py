@@ -98,12 +98,21 @@ while True:
             print("\n(Example: '5 + 3 =' or 'sqrt 16 =') - Type 'back' to return")
             user_expr = input("Enter your calculation: ").strip().lower()
 
-            if user_expr == "back":  # return to main menu
+            if user_expr.lower == "back":  # return to main menu
                 break
 
-            operators = ["+", "-", "*", "/", "//", "%", "**", "sqrt"]
+            user_expr = user_expr.replace("=", " ").strip()
+
+            if not user_expr:
+                print("Error: please enter a calculation.")
+                continue
+
+            operators = ["**", "//", "sqrt", "+", "-", "*", "/", "%"]
+
             for op in operators:  # bug fix: add spaces around operators to ensure correct splitting
                 user_expr = user_expr.replace(op, f" {op} ")
+
+            user_expr = " ".join(user_expr.split())
 
             parts = user_expr.split()
 
@@ -112,23 +121,24 @@ while True:
                     print("Error: Please enter something!")
                     continue
 
-                if parts[0] == "sqrt":
+                if parts[0].lower() == "sqrt" and len(parts) == 2:
                     n1 = float(parts[1])
                     result = calculate(n1, "sqrt")
                     full_record = f"sqrt {n1} = {result}"
                     print(f"sqrt {n1} = {result}")
 
-                elif len(parts) >= 3:
+                elif len(parts) == 3:
                     n1 = float(parts[0])
                     op = parts[1]
                     n2 = float(parts[2])
                     result = calculate(n1, op, n2)
                     full_record = f"{n1} {op} {n2} = {result}"
+
                 else:
-                    print("Error: Incomplete expression.")
+                    print("Error: Invalid format. Use 'num1 op num2' or 'sqrt num'")
                     continue
 
-                print(f"\n result = {full_record}")
+                print(f"\n Full: {full_record}")
 
                 with open("CalHistory.txt", "a") as file:
                     file.write(full_record + "\n")
