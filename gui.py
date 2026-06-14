@@ -76,10 +76,12 @@ class CalculatorApp:
         # Case 3: Display current expression when = is pressed
         elif char == "=":
             try:
-                if self.expression:
-                    self.display_label.config(text=self.expression)
+                result = eval(self.expression)
+                self.expression = str(result)
+                self.display_label.config(text=self.expression)
             except Exception:
                 self.display_label.config(text="Error")
+                self.expression = ""
 
         # Case 4: Append the number or operator to the expression
         else:
